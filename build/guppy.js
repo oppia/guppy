@@ -6962,3 +6962,5 @@ var Guppy = (function () {
     return Guppy;
 
 }());
+
+module.exports = Guppy;
