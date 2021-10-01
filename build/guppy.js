@@ -6492,8 +6492,8 @@ var Guppy = (function () {
         var eventTargetClass = e.target.getAttribute("class");
         if (
           eventTargetClass &&
-          eventTargetClass.startsWith("oppia-osk-btn") ||
-          eventTargetClass == "guppy-button") return;
+          (eventTargetClass.startsWith("oppia-osk-btn") ||
+          eventTargetClass == "guppy-button")) return;
         var n = e.target;
         Guppy.kb.is_mouse_down = true;
         while (n != null) {
