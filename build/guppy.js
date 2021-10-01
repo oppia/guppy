@@ -6489,9 +6489,11 @@ var Guppy = (function () {
         // guppy instance which causes the custom OSK on Oppia to disappear.
         // To overcome this, whenever Oppia's OSK is clicked, this function call
         // will be skipped.
+        var eventTargetClass = e.target.getAttribute("class");
         if (
-          e.target.getAttribute("class").startsWith("oppia-osk-btn") ||
-          e.target.getAttribute("class") == "guppy-button") return;
+          eventTargetClass &&
+          eventTargetClass.startsWith("oppia-osk-btn") ||
+          eventTargetClass == "guppy-button") return;
         var n = e.target;
         Guppy.kb.is_mouse_down = true;
         while (n != null) {
