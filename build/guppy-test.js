@@ -11685,7 +11685,7 @@ var Guppy = (function () {
     	output: {
     		latex: "\\dfrac{{$1}}{{$2}}",
     		small_latex: "\\frac{{$1}}{{$2}}",
-    		asciimath: "({$1})/({$2})"
+    		asciimath: "{$1}/{$2}"
     	},
     	input: 1,
     	keys: ["/"],
