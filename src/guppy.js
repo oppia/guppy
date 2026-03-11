@@ -918,14 +918,23 @@ Guppy.register_keyboard_handlers = function(){
                 Guppy.kb.k_syms[s.keys[i]] = s.attrs.type;
     }
     for(i in Guppy.kb.k_chars)
-        Mousetrap.bind(i,function(i){ return function(){
+        Mousetrap.bind(i,function(i){ return function(e){
             if(!Guppy.active_guppy) return true;
             Guppy.active_guppy.temp_cursor.node = null;
+
+            // Handle CapsLock state via event modifier; apply CapsLock XOR Shift for letters.
+            var charToInsert = Guppy.kb.k_chars[i];
+            var isCapsLock = e && e.getModifierState && e.getModifierState('CapsLock');
+            if(isCapsLock && /[a-zA-Z]/.test(charToInsert)){
+                var isShift = (e && e.shiftKey) || i.indexOf('shift+') === 0;
+                charToInsert = isShift ? charToInsert.toLowerCase() : charToInsert.toUpperCase();
+            }
+
             if(Utils.is_text(Guppy.active_guppy.engine.current) && Guppy.kb.k_text[i]){
                 Guppy.active_guppy.engine.insert_string(Guppy.kb.k_text[i]);
             }
             else{
-                Guppy.active_guppy.engine.insert_string(Guppy.kb.k_chars[i]);
+                Guppy.active_guppy.engine.insert_string(charToInsert);
             }
             Guppy.active_guppy.render(true);
             return false;
