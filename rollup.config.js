@@ -7,7 +7,9 @@ export default {
     input: 'src/guppy.js',
     output: {name:'Guppy',
 	     file:process.env.NODE_ENV === 'production' ? 'build/guppy.min.js' :( process.env.NODE_ENV === 'test' ? 'build/guppy-test.js' : 'build/guppy.js'),
-	     format: 'iife'},
+	     format: 'umd',
+		 exports: 'default'
+		},
     plugins: [
 	commonjs({
             include: [
